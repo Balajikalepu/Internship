@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Room Booking</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+	    background: rgba(0, 0, 0, 0.8);
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://www.cvent.com/sites/default/files/image/2021-10/hotel%20room%20with%20beachfront%20view.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .booking-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	    height: 700px;
+            width: 600px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+	    border-radius: 20px;
+        }
+
+	select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+	    border-radius: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+	
+	.back{
+	    box-sizing: border-box;
+	    padding: 20px;
+	}
+    </style>
+</head>
+<body>
+
+    <div class="back">
+	<a href="Hotel_V.html"><img src="https://static.thenounproject.com/png/3466561-200.png" link="Hotel_V.html" style="width:60px; height:60px"></a>
+
+    <div class="booking-container">
+        <h1>Hotel Room Booking</h1>
+        <div class="form-group">
+            <label for="check-in">Check-In Date:</label>
+            <input type="date" id="dateInput1" required> <br><br>
+            <label for="check-out">Check-Out Date:</label>
+            <input type="date" id="dateInput2" required><br><br>
+            <label for="guests">Number of rooms:</label>
+            <input type="number" id="number" required><br><br>
+        </div>
+	<h3 align="Center"> <b> Type of room  </b> </h3>
+	
+        	<input type="radio" id="Small" name="rooms" value="small" required>
+		<label>Small</label>
+		<input type="radio" id="medium" name="rooms" value="medium" required>
+		<label>Medium</label>
+		<input type="radio" id="luxury" name="rooms" value="luxury" required>
+		<label>Luxury</label> 
+        	<br><br>
+        <button onclick="daysDifference()" style="display:none"> 
+          submit 
+        </button> 
+	<h3 style="color:32A80F" id="price" align="center"></h3> 
+	<button onclick="daysDifference()"> 
+          submit 
+        </button>
+ 
+    </div>
+</div>
+        <script>
+	
+	function daysDifference() {
+   
+         var dateI1 = document.getElementById("dateInput1").value;
+         var dateI2 = document.getElementById("dateInput2").value;
+         var no1 = document.getElementById("number").value;
+	 var room = document.getElementsByName("rooms");
+         
+
+
+         var date1 = new Date(dateI1);
+         var date2 = new Date(dateI2);
+
+
+	var time_difference = date2.getTime()-date1.getTime();
+
+
+         var result = time_difference / (1000 * 60 * 60 * 24);
+
+ 
+	for (i = 0; i < room.length; i++) {
+		var index = room[i].checked;
+		var value = room[i].value;
+                if (index){
+			if(value == "small"){
+				document.getElementById("price").innerHTML
+                        = "Price: " + 4000*result*no1 + "RS is the total cost of your booking in our hotel";
+			}
+			if(value == "medium"){
+				document.getElementById("price").innerHTML
+                        = "Price: " + 6000*result*no1 + "RS is the total cost of your booking in our hotel";
+			}
+			if(value == "luxury"){
+				document.getElementById("price").innerHTML
+                        = "Price: " + 10000*result*no1 + "RS is the total cost of your booking in our hotel";
+			}
+                    
+            	}
+	}
+	
+      }
+
+	function display() {
+            alert("Payment Done Enjoy your stay");
+         }
+
+
+		var edit = document.getElementById("edit");
+		var save = document.getElementById("save");
+
+		edit.onclick = function() {
+    			save.style.visibility = "visible";
+
+			}
+                    
+
+        function bookRoom() {
+            alert('Room booked!'); // You can replace this with your booking logic
+        }
+    </script>
+</body>
+</html>
